@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
 <!--
 ======================================================
 ______    _ _           ______    _     _             
@@ -28,9 +28,9 @@ Description: Never Stop Learning
   <h2>Add a Friend</h2>
   <form action='/friends' method='POST'>
     <label for="first_name">First Name:
-        <input type="text" name="first_name" id="first_name"></label>
+        <input type="text" name="first_name" id="first_name" pattern="[A-Za-z]{1,20}" required></label>
     <label for="last_name">Last Name:
-        <input type="text" name="last_name" id="last_name"></label>
+        <input type="text" name="last_name" id="last_name" pattern="[A-Za-z]{1,20}" required></label>
     <input type="submit" value="Add">
   </form>
   <hr>
@@ -42,6 +42,7 @@ Description: Never Stop Learning
      <form action='/friends/{{ friend["id"] }}/edit' method='GET'>
        <input type="submit" name="edit" value="edit">
      </form> 
+     
      <form action='/friends/{{ friend["id"] }}/delete' method='POST'>
       <input  type="submit" name="delete" value="delete">
      </form>
