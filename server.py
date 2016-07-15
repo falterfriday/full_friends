@@ -4,11 +4,9 @@ app = Flask(__name__)
 mysql = MySQLConnector(app,'friendsdb')
 @app.route('/')
 def index():
-    query = "SELECT * FROM friends"                           # define your query
-    friends = mysql.query_db(query)                           # run query with query_db()
+    query = "SELECT * FROM friends"
+    friends = mysql.query_db(query)
     return render_template('index.html', all_friends=friends)
-
-
 @app.route('/friends', methods=['POST'])
 def create():
     query = "INSERT INTO friends (first_name, last_name, created_at, updated_at) VALUES (:first_name, :last_name, NOW(), NOW())"
@@ -18,8 +16,6 @@ def create():
            }
     mysql.query_db(query, data)
     return redirect('/')
-
-
 @app.route('/friends/<id>', methods=['POST'])
 def update(id):
     data = {
@@ -30,22 +26,16 @@ def update(id):
     query = "UPDATE friends SET first_name = :first_name, last_name = :last_name WHERE id = :id"
     mysql.query_db(query, data)
     return redirect('/')
-
-
 @app.route('/friends/<id>/edit', methods=['GET'])
 def edit(id):
     data = {
     'id': id
     }
     return render_template('friends.html', id=id)
-
-
 @app.route('/friends/<id>/delete', methods=['POST'])
 def destroy(id):
     query = "DELETE FROM friends WHERE id = :id"
     data = {'id': id}
     mysql.query_db(query, data)
     return redirect('/')
-
-
 app.run(debug=True)
