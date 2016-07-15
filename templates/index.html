@@ -23,26 +23,22 @@ Description: Never Stop Learning
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-
-
   <h2>Add a Friend</h2>
   <form action='/friends' method='POST'>
-    <label for="first_name">First Name:
-        <input type="text" name="first_name" id="first_name" pattern="[A-Za-z]{1,20}" required></label>
-    <label for="last_name">Last Name:
-        <input type="text" name="last_name" id="last_name" pattern="[A-Za-z]{1,20}" required></label>
+    First Name:
+        <input type="text" name="first_name" id="first_name" pattern="[A-Za-z]{1,20}" required>
+    Last Name:
+        <input type="text" name="last_name" id="last_name" pattern="[A-Za-z]{1,20}" required>
     <input type="submit" value="Add">
   </form>
   <hr>
-  <h3>Friends:</h3>
   {% for friend in all_friends: %}
-     <p>First Name: {{ friend['first_name'] }}</p>
-     <p>Last Name: {{ friend['last_name'] }}</p>
+     <p>First: {{ friend['first_name'] }}</p><br>
+     <p>Last: {{ friend['last_name'] }}</p>
      <br>
      <form action='/friends/{{ friend["id"] }}/edit' method='GET'>
        <input type="submit" name="edit" value="edit">
-     </form> 
-     
+     </form>
      <form action='/friends/{{ friend["id"] }}/delete' method='POST'>
       <input  type="submit" name="delete" value="delete">
      </form>
