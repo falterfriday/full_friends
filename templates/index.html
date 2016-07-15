@@ -1,28 +1,51 @@
 <html>
+<!--
+======================================================
+______    _ _           ______    _     _             
+|  ___|  | | |          |  ___|  (_)   | |            
+| |_ __ _| | |_ ___ _ __| |_ _ __ _  __| | __ _ _   _ 
+|  _/ _` | | __/ _ \ '__|  _| '__| |/ _` |/ _` | | | |
+| || (_| | | ||  __/ |  | | | |  | | (_| | (_| | |_| |
+\_| \__,_|_|\__\___|_|  \_| |_|  |_|\__,_|\__,_|\__, |
+                                                 __/ |
+                                                |___/ 
+======================================================
+Owner Name: Patrick A. Todd
+Profile: https://www.github.com/falterfriday
+Blog: https://falterfriday.wordpress.com/
+Version: 0.2
+Description: Never Stop Learning
+======================================================
+-->
 <head>
-  <title>Friends</title>
+  <title>Full Friends</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<!-- {{ all_friends }} -->
-<h1>These are all my friends!</h1>
-<!-- with all the data we can then construct a more structured output -->
-{% for friend in all_friends: %}
-   <p>ID: {{ friend['id'] }}</p>
-   <p>First Name: {{ friend['first_name'] }}</p>
-   <p>Last Name: {{ friend['last_name'] }}</p>
-   <p>Occupation: {{ friend['occupation'] }}</p>
-   <hr>
-{% endfor %}
+
+
   <h2>Add a Friend</h2>
   <form action='/friends' method='POST'>
     <label for="first_name">First Name:
         <input type="text" name="first_name" id="first_name"></label>
     <label for="last_name">Last Name:
         <input type="text" name="last_name" id="last_name"></label>
-    <label for="occupation">Occupation:
-        <input type="text" name="occupation" id="occupation"></label>
     <input type="submit" value="Add">
-
   </form>
+  <hr>
+  <h3>Friends:</h3>
+  {% for friend in all_friends: %}
+     <p>First Name: {{ friend['first_name'] }}</p>
+     <p>Last Name: {{ friend['last_name'] }}</p>
+     <br>
+     <form action='/friends/{{ friend["id"] }}/edit' method='GET'>
+       <input type="submit" name="edit" value="edit">
+     </form> 
+     <form action='/friends/{{ friend["id"] }}/delete' method='POST'>
+      <input  type="submit" name="delete" value="delete">
+     </form>
+     <hr>
+  {% endfor %}
 </body>
 </html>
