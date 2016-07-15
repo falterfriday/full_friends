@@ -22,15 +22,16 @@ Description: Never Stop Learning
 	<title>Full Friends Edit</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 <body>
   <h2>Edit a Friend</h2>
 	<form action='/friends/{{id}}' method="POST">
 	First Name: 
-	<input type="text" name='first_name' placeholder="new first name">
+	<input type="text" name='first_name' value="{{curr_friend['first_name']}}">
 	Last Name: 
-	<input type="text" name='last_name' placeholder="new last name">
-	<input type="submit" name="update" value="update" >
+	<input type="text" name='last_name' placeholder="new last name" value="{{curr_friend['last_name']}}">
+	<input type="submit" name="update" value="update"  class="btn btn-success" >
 </form>  
 <hr>
 </body>
