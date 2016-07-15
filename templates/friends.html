@@ -25,20 +25,13 @@ Description: Never Stop Learning
 </head>
 <body>
   <h2>Edit a Friend</h2>
-
-<form action='/friends/{{id}}' method="POST">
-	
-	First Name: <input type="text" name='first_name'>
-	
-	Last Name: <input type="text" name='last_name'>
-	
-	<input type="submit" name="update" value="update">
+	<form action='/friends/{{id}}' method="POST">
+	First Name: 
+	<input type="text" name='first_name' placeholder="new first name">
+	Last Name: 
+	<input type="text" name='last_name' placeholder="new last name">
+	<input type="submit" name="update" value="update" >
 </form>  
-
-
-
-
-
 <hr>
 </body>
 </html>
