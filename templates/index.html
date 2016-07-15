@@ -20,29 +20,34 @@ Description: Never Stop Learning
 <head>
   <title>Full Friends</title>
   <meta charset="utf-8">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+<dir class="wrapper">
   <h2>Add a Friend</h2>
   <form action='/friends' method='POST'>
     First Name:
         <input type="text" name="first_name" id="first_name" pattern="[A-Za-z]{1,20}" required>
     Last Name:
         <input type="text" name="last_name" id="last_name" pattern="[A-Za-z]{1,20}" required>
-    <input type="submit" value="Add">
+    <input class="btn btn-success" type="submit" value="Add">
   </form>
-  <hr>
+<hr class="hr">
+
   {% for friend in all_friends: %}
-     <p>First: {{ friend['first_name'] }}</p><br>
-     <p>Last: {{ friend['last_name'] }}</p>
-     <br>
-     <form action='/friends/{{ friend["id"] }}/edit' method='GET'>
-       <input type="submit" name="edit" value="edit">
+    <div class="person">
+      <p>First: {{ friend['first_name'] }}</p><br>
+      <p>Last: {{ friend['last_name'] }}</p><hr class="personhr">
+      <form action='/friends/{{ friend["id"] }}/edit' method='GET'>
+      <input type="submit"  class="btn btn-primary" name="edit" value="edit">
+      </form>
+      <form action='/friends/{{ friend["id"] }}/delete' method='POST'>
+      <input  type="submit"  class="btn btn-danger" name="delete" value="delete">
      </form>
-     <form action='/friends/{{ friend["id"] }}/delete' method='POST'>
-      <input  type="submit" name="delete" value="delete">
-     </form>
-     <hr>
+     </div>
   {% endfor %}
+</dir>
 </body>
 </html>
