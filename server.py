@@ -28,10 +28,13 @@ def update(id):
     return redirect('/')
 @app.route('/friends/<id>/edit', methods=['GET'])
 def edit(id):
+    query = "SELECT * FROM friends WHERE id = :id"
     data = {
     'id': id
     }
-    return render_template('friends.html', id=id)
+    curr_friend = mysql.query_db(query, data)[0]
+    print curr_friend
+    return render_template('friends.html', id=id, curr_friend=curr_friend)
 @app.route('/friends/<id>/delete', methods=['POST'])
 def destroy(id):
     query = "DELETE FROM friends WHERE id = :id"
